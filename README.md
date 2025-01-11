@@ -172,7 +172,7 @@ class MyBot(BotAI):
 
 ## Community - Help and support
 
-You have questions but don't want to create an issue? Join the [Starcraft 2 AI Discord server](https://discordapp.com/invite/zXHU4wM) or [aiarena.net Discord server](https://discord.gg/yDBzbtC). Questions about this repository can be asked in text channel #python. There are discussions and questions about SC2 bot programming and this repository every day.
+You have questions but don't want to create an issue? Join the [SC2 AI Arena Discord server](https://discordapp.com/invite/zXHU4wM). Questions about this repository can be asked in text channel #python. There are discussions and questions about SC2 bot programming and this repository every day.
 
 ## Bug reports, feature requests and ideas
 
