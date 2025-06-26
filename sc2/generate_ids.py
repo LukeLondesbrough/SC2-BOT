@@ -76,6 +76,9 @@ from __future__ import annotations
             key = v["buttonname"]
             remapid = v.get("remapid")
 
+            if key == "" and v["index"] == 0:
+                key = v["name"]
+
             if (not key) and (remapid is None):
                 assert v["buttonname"] == ""
                 continue
