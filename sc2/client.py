@@ -444,7 +444,9 @@ class Client(Protocol):
         await self._execute(
             obs_action=sc_pb.RequestObserverAction(
                 actions=[
-                    sc_pb.ObserverAction(camera_move=sc_pb.ActionObserverCameraMove(world_pos=position.as_Point2D, distance=distance))
+                    sc_pb.ObserverAction(
+                        camera_move=sc_pb.ActionObserverCameraMove(world_pos=position.as_Point2D, distance=distance)
+                    )
                 ]
             )
         )
