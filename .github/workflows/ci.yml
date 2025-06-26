@@ -84,7 +84,7 @@ jobs:
           rm -rf sc2/dicts/__pycache__ sc2/dicts_old/__pycache__
 
       - name: Upload generated dicts folder as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Generated_dicts
           path: sc2/dicts
@@ -333,7 +333,7 @@ jobs:
           echo "Upload htmlcov folder because it was mounted in container, so it will be available in host machine"
 
       - name: Upload htmlcov/ folder as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Coverage_report
           path: htmlcov
