@@ -197,7 +197,7 @@ wheels = [
 
 [[package]]
 name = "burnysc2"
-version = "7.0.6"
+version = "7.0.7"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
