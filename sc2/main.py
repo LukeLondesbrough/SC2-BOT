@@ -491,9 +491,9 @@ def run_game(map_settings, players, **kwargs) -> Result | list[Result | None]:
 def run_replay(ai, replay_path: Path | str, realtime: bool = False, observed_id: int = 0):
     portconfig = Portconfig()
     assert Path(replay_path).is_file(), f"Replay does not exist at the given path: {replay_path}"
-    assert Path(
-        replay_path
-    ).is_absolute(), f'Replay path has to be an absolute path, e.g. "C:/replays/my_replay.SC2Replay" but given path was "{replay_path}"'
+    assert Path(replay_path).is_absolute(), (
+        f'Replay path has to be an absolute path, e.g. "C:/replays/my_replay.SC2Replay" but given path was "{replay_path}"'
+    )
     base_build, data_version = get_replay_version(replay_path)
     result = asyncio.get_event_loop().run_until_complete(
         _host_replay(replay_path, ai, realtime, portconfig, base_build, data_version, observed_id)

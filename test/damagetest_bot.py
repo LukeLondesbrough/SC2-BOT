@@ -300,12 +300,12 @@ class TestBot(BotAI):
                         #     f"Attacker type: {attacker_type}, defender health: {defender.health} / {defender.health_max}, defender shield: {defender.shield} / {defender.shield_max}, expected damage: {expected_damage}, real damage so far: {real_damage}, attacker weapon cooldown: {attacker.weapon_cooldown}"
                         # )
                         max_steps -= 1
-                        assert (
-                            max_steps > 0
-                        ), f"Step limit reached. Test timed out for attacker {attacker_type} and defender {defender_type}"
-                    assert (
-                        expected_damage == real_damage
-                    ), f"Expected damage does not match real damage: Unit type {attacker_type} (attack upgrade: {attacker.attack_upgrade_level}) deals {real_damage} damage against {defender_type} (armor upgrade: {defender.armor_upgrade_level} and shield upgrade: {defender.shield_upgrade_level}) but calculated damage was {expected_damage}, attacker weapons: \n{attacker._weapons}"
+                        assert max_steps > 0, (
+                            f"Step limit reached. Test timed out for attacker {attacker_type} and defender {defender_type}"
+                        )
+                    assert expected_damage == real_damage, (
+                        f"Expected damage does not match real damage: Unit type {attacker_type} (attack upgrade: {attacker.attack_upgrade_level}) deals {real_damage} damage against {defender_type} (armor upgrade: {defender.armor_upgrade_level} and shield upgrade: {defender.shield_upgrade_level}) but calculated damage was {expected_damage}, attacker weapons: \n{attacker._weapons}"
+                    )
 
                     await self.clean_up_center()
 

@@ -42,7 +42,7 @@ if len(sys.argv) > 1:
         if process.returncode is not None and process.returncode != 0:
             # Bot has thrown an error, try again
             logger.info(
-                f"Bot has thrown an error with error code {process.returncode}. This was try {i+1} out of {retries}."
+                f"Bot has thrown an error with error code {process.returncode}. This was try {i + 1} out of {retries}."
             )
             continue
 

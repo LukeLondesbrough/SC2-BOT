@@ -167,7 +167,9 @@ class BotAIInternal(ABC):
     @property_cache_once_per_frame
     def expansion_locations(self) -> dict[Point2, Units]:
         """Same as the function above."""
-        assert self._expansion_positions_list, "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        assert self._expansion_positions_list, (
+            "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        )
         warnings.warn(
             "You are using 'self.expansion_locations', please use 'self.expansion_locations_list' (fast) or 'self.expansion_locations_dict' (slow) instead.",
             DeprecationWarning,
@@ -372,9 +374,9 @@ class BotAIInternal(ABC):
                 )
             return action
 
-        assert isinstance(
-            action, UnitCommand
-        ), f"Given unit command is not a command, but instead of type {type(action)}"
+        assert isinstance(action, UnitCommand), (
+            f"Given unit command is not a command, but instead of type {type(action)}"
+        )
         if subtract_cost:
             cost: Cost = self.game_data.calculate_ability_cost(action.ability)
             if can_afford_check and not (self.minerals >= cost.minerals and self.vespene >= cost.vespene):
@@ -400,9 +402,9 @@ class BotAIInternal(ABC):
         This function is only useful for realtime=True in the first frame of the game to instantly produce a worker
         and split workers on the mineral patches.
         """
-        assert isinstance(
-            action, UnitCommand
-        ), f"Given unit command is not a command, but instead of type {type(action)}"
+        assert isinstance(action, UnitCommand), (
+            f"Given unit command is not a command, but instead of type {type(action)}"
+        )
         if not self.can_afford(action.ability):
             logger.warning(f"Cannot afford action {action}")
             return ActionResult.Error
@@ -888,9 +890,9 @@ class BotAIInternal(ABC):
             return 0
         # Calculate index, needs to be after pdist has been calculated and cached
         condensed_index = self.square_to_condensed(unit1.distance_calculation_index, unit2.distance_calculation_index)
-        assert (
-            condensed_index < len(self._cached_pdist)
-        ), f"Condensed index is larger than amount of calculated distances: {condensed_index} < {len(self._cached_pdist)}, units that caused the assert error: {unit1} and {unit2}"
+        assert condensed_index < len(self._cached_pdist), (
+            f"Condensed index is larger than amount of calculated distances: {condensed_index} < {len(self._cached_pdist)}, units that caused the assert error: {unit1} and {unit2}"
+        )
         distance = self._pdist[condensed_index]
         return distance
 

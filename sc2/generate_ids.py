@@ -87,12 +87,12 @@ from __future__ import annotations
                 if v["friendlyname"] != "":
                     key = v["friendlyname"]
                 else:
-                    sys.exit(f"Not mapped: {v !r}")
+                    sys.exit(f"Not mapped: {v!r}")
 
             key = key.upper().replace(" ", "_").replace("@", "")
 
             if "name" in v:
-                key = f'{v["name"].upper().replace(" ", "_")}_{key}'
+                key = f"{v['name'].upper().replace(' ', '_')}_{key}"
 
             if "friendlyname" in v:
                 key = v["friendlyname"].upper().replace(" ", "_")
@@ -147,7 +147,7 @@ from __future__ import annotations
         idsdir.mkdir(exist_ok=True)
 
         with (idsdir / "__init__.py").open("w") as f:
-            initstring = f"__all__ = {[n.lower() for n in self.FILE_TRANSLATE.values()] !r}\n".replace("'", '"')
+            initstring = f"__all__ = {[n.lower() for n in self.FILE_TRANSLATE.values()]!r}\n".replace("'", '"')
             f.write("\n".join([self.HEADER, initstring]))
 
         for name, body in enums.items():

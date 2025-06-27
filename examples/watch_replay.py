@@ -37,7 +37,7 @@ if __name__ == "__main__":
         # Convert relative path to absolute path, assuming this replay is in this folder
         folder_path = Path(__file__).parent
         replay_path = folder_path / replay_name
-    assert (
-        replay_path.is_file()
-    ), "Run worker_rush.py in the same folder first to generate a replay. Then run watch_replay.py again."
+    assert replay_path.is_file(), (
+        "Run worker_rush.py in the same folder first to generate a replay. Then run watch_replay.py again."
+    )
     run_replay(my_observer_ai, replay_path=str(replay_path))

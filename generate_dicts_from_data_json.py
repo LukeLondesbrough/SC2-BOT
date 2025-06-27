@@ -205,9 +205,9 @@ def get_unit_train_build_abilities(data):
                 requirements: list[dict[str, int]] = ability_info.get("requirements", [])
                 if requirements:
                     # Assume train abilities only have one tech building requirement; thors requiring armory and techlab is seperatedly counted
-                    assert (
-                        len([req for req in requirements if req.get("building", 0)]) <= 1
-                    ), f"Error: Building {unit_type} has more than one tech requirements with train ability {ability_id}"
+                    assert len([req for req in requirements if req.get("building", 0)]) <= 1, (
+                        f"Error: Building {unit_type} has more than one tech requirements with train ability {ability_id}"
+                    )
                     # UnitTypeId 5 == Techlab
                     requires_techlab: bool = any(req for req in requirements if req.get("addon", 0) == 5)
                     requires_tech_builing_id_value: int = next(
@@ -404,9 +404,9 @@ def generate_unit_alias_dict(data: dict):
 
         current_unit_tech_aliases: set[UnitTypeId] = OrderedSet2()
 
-        assert (
-            unit_type_value in game_data.units
-        ), f"Unit {unit_type} not listed in game_data.units - perhaps pickled file {pickled_file_path} is outdated?"
+        assert unit_type_value in game_data.units, (
+            f"Unit {unit_type} not listed in game_data.units - perhaps pickled file {pickled_file_path} is outdated?"
+        )
         unit_alias: int = game_data.units[unit_type_value]._proto.unit_alias
         if unit_alias:
             # Might be 0 if it has no alias

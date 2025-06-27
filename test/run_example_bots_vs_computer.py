@@ -145,9 +145,9 @@ async def main():
         if hasattr(game_match.players[0], "on_end_called"):
             assert getattr(game_match.players[0], "on_end_called", False) is True
 
-        assert all(
-            v == Result.Tie for k, v in result.items()
-        ), f"result={result} in bot vs computer: {game_match.players[0]} in realtime={game_match.realtime}"
+        assert all(v == Result.Tie for k, v in result.items()), (
+            f"result={result} in bot vs computer: {game_match.players[0]} in realtime={game_match.realtime}"
+        )
     logger.info("Checked all results")
 
 

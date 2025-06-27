@@ -45,7 +45,7 @@ def combine_actions(action_iter):
             elif isinstance(target, Unit):
                 cmd.target_unit_tag = target.tag
             elif target is not None:
-                raise RuntimeError(f"Must target a unit, point or None, found '{target !r}'")
+                raise RuntimeError(f"Must target a unit, point or None, found '{target!r}'")
 
             yield raw_pb.ActionRaw(unit_command=cmd)
 
@@ -84,4 +84,4 @@ def combine_actions(action_iter):
                     )
                     yield raw_pb.ActionRaw(unit_command=cmd)
             else:
-                raise RuntimeError(f"Must target a unit, point or None, found '{target !r}'")
+                raise RuntimeError(f"Must target a unit, point or None, found '{target!r}'")

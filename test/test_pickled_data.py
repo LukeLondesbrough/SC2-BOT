@@ -308,9 +308,9 @@ def test_bot_ai():
         real_cost2: Cost = Cost(cost, cost)
         for item in items:
             assert_cost(item, real_cost2)
-            assert (
-                bot.calculate_cost(item) == real_cost2
-            ), f"Cost of {item} should be {real_cost2} but is {calc_cost(item)}"
+            assert bot.calculate_cost(item) == real_cost2, (
+                f"Cost of {item} should be {real_cost2} but is {calc_cost(item)}"
+            )
 
     # Do not use the generic research abilities in the bot when testing if you can afford it as these are wrong
     assert_cost(AbilityId.RESEARCH_ZERGFLYERARMOR, Cost(0, 0))
@@ -991,9 +991,9 @@ def test_dicts():
             if research_ability_correct.value in {807, 1284}:
                 # Test broke on windows
                 continue
-            assert (
-                research_ability_correct == research_ability_id_from_api
-            ), f"Research abilities do not match: Correct one is {research_ability_correct} but API returned {research_ability_id_from_api}"
+            assert research_ability_correct == research_ability_id_from_api, (
+                f"Research abilities do not match: Correct one is {research_ability_correct} but API returned {research_ability_id_from_api}"
+            )
 
 
 @given(

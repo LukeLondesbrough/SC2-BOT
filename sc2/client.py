@@ -657,12 +657,12 @@ class Client(Protocol):
             unit_tags = unit_tags.tags
         if isinstance(unit_tags, Unit):
             unit_tags = [unit_tags.tag]
-        assert hasattr(
-            unit_tags, "__iter__"
-        ), f"unit_tags argument needs to be an iterable (list, dict, set, Units), given argument is {type(unit_tags).__name__}"
-        assert (
-            1 <= unit_value <= 3
-        ), f"unit_value needs to be between 1 and 3 (1 for energy, 2 for life, 3 for shields), given argument is {unit_value}"
+        assert hasattr(unit_tags, "__iter__"), (
+            f"unit_tags argument needs to be an iterable (list, dict, set, Units), given argument is {type(unit_tags).__name__}"
+        )
+        assert 1 <= unit_value <= 3, (
+            f"unit_value needs to be between 1 and 3 (1 for energy, 2 for life, 3 for shields), given argument is {unit_value}"
+        )
         assert all(tag > 0 for tag in unit_tags), f"Unit tags have invalid value: {unit_tags}"
         assert isinstance(value, (int, float)), "Value needs to be of type int or float"
         assert value >= 0, "Value can't be negative"

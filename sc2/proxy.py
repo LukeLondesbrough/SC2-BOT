@@ -106,7 +106,7 @@ class Proxy:
             if obs.player_result:
                 self.result = {pr.player_id: Result(pr.result) for pr in obs.player_result}
             elif self.timeout_loop and obs.HasField("observation") and obs.observation.game_loop > self.timeout_loop:
-                self.result = {i: Result.Tie for i in range(1, 3)}
+                self.result = {i: Result.Tie for i in range(1, 3)}  # noqa: C420
                 logger.info(f"Proxy({self.player.name}) timing out")
                 act = [sc_pb.Action(action_chat=sc_pb.ActionChat(message="Proxy: Timing out"))]
                 await self.controller._execute(action=sc_pb.RequestAction(actions=act))
@@ -204,7 +204,7 @@ class Proxy:
             await asyncio.sleep(5)
 
         # cleanup
-        logger.info(f"({self.port}): cleaning up {self.player !r}")
+        logger.info(f"({self.port}): cleaning up {self.player!r}")
         for _i in range(3):
             if isinstance(bot_process, subprocess.Popen):
                 if bot_process.stdout and not bot_process.stdout.closed:  # should not run anymore

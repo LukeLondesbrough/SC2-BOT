@@ -152,7 +152,9 @@ class BotAI(BotAIInternal):
     @property_cache_once_per_frame
     def expansion_locations_list(self) -> list[Point2]:
         """Returns a list of expansion positions, not sorted in any way."""
-        assert self._expansion_positions_list, "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        assert self._expansion_positions_list, (
+            "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        )
         return self._expansion_positions_list
 
     @property_cache_once_per_frame
@@ -163,7 +165,9 @@ class BotAI(BotAIInternal):
 
         Caution: This function is slow. If you only need the expansion locations, use the property above.
         """
-        assert self._expansion_positions_list, "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        assert self._expansion_positions_list, (
+            "self._find_expansion_locations() has not been run yet, so accessing the list of expansion locations is pointless."
+        )
         expansion_locations: dict[Point2, Units] = {pos: Units([], self) for pos in self._expansion_positions_list}
         for resource in self.resources:
             # It may be that some resources are not mapped to an expansion location
@@ -654,9 +658,9 @@ class BotAI(BotAIInternal):
             )
             return await self.can_place_single(building, positions)
         assert isinstance(positions, list), f"Expected an iterable (list, tuple), but was: {positions}"
-        assert isinstance(
-            positions[0], Point2
-        ), f"List is expected to have Point2, but instead had: {positions[0]} {type(positions[0])}"
+        assert isinstance(positions[0], Point2), (
+            f"List is expected to have Point2, but instead had: {positions[0]} {type(positions[0])}"
+        )
         return await self.client._query_building_placement_fast(building, positions)
 
     async def find_placement(
@@ -780,9 +784,9 @@ class BotAI(BotAIInternal):
 
         :param structure_type:
         """
-        assert isinstance(
-            structure_type, (int, UnitTypeId)
-        ), f"Needs to be int or UnitTypeId, but was: {type(structure_type)}"
+        assert isinstance(structure_type, (int, UnitTypeId)), (
+            f"Needs to be int or UnitTypeId, but was: {type(structure_type)}"
+        )
         if isinstance(structure_type, int):
             structure_type_value: int = structure_type
             structure_type = UnitTypeId(structure_type_value)
@@ -1111,9 +1115,9 @@ class BotAI(BotAIInternal):
 
         :param upgrade_type:
         """
-        assert (
-            upgrade_type in UPGRADE_RESEARCHED_FROM
-        ), f"Could not find upgrade {upgrade_type} in 'research from'-dictionary"
+        assert upgrade_type in UPGRADE_RESEARCHED_FROM, (
+            f"Could not find upgrade {upgrade_type} in 'research from'-dictionary"
+        )
 
         # Not affordable
         if not self.can_afford(upgrade_type):

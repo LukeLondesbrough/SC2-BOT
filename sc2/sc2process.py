@@ -184,9 +184,9 @@ class SC2Process:
             valid_version_string = special_match(self._sc2_version)
             if valid_version_string:
                 self._data_hash = self.find_data_hash(self._sc2_version)
-                assert (
-                    self._data_hash is not None
-                ), f"StarCraft 2 Client version ({self._sc2_version}) was not found inside sc2/versions.py file. Please check your spelling or check the versions.py file."
+                assert self._data_hash is not None, (
+                    f"StarCraft 2 Client version ({self._sc2_version}) was not found inside sc2/versions.py file. Please check your spelling or check the versions.py file."
+                )
 
             else:
                 logger.warning(

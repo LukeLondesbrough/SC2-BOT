@@ -126,7 +126,7 @@ class Unit:
 
     def __repr__(self) -> str:
         """Returns string of this form: Unit(name='SCV', tag=4396941328)."""
-        return f"Unit(name={self.name !r}, tag={self.tag})"
+        return f"Unit(name={self.name!r}, tag={self.tag})"
 
     @property
     def type_id(self) -> UnitTypeId:
@@ -1285,9 +1285,9 @@ class Unit:
         :param can_afford_check:
         """
         if unit in {UnitTypeId.EXTRACTOR, UnitTypeId.ASSIMILATOR, UnitTypeId.REFINERY}:
-            assert isinstance(
-                position, Unit
-            ), "When building the gas structure, the target needs to be a unit (the vespene geysir) not the position of the vespene geysir."
+            assert isinstance(position, Unit), (
+                "When building the gas structure, the target needs to be a unit (the vespene geysir) not the position of the vespene geysir."
+            )
         return self(
             self._bot_object.game_data.units[unit.value].creation_ability.id,
             target=position,
@@ -1313,9 +1313,9 @@ class Unit:
         :param can_afford_check:
         """
         gas_structure_type_id: UnitTypeId = race_gas[self._bot_object.race]
-        assert isinstance(
-            target_geysir, Unit
-        ), "When building the gas structure, the target needs to be a unit (the vespene geysir) not the position of the vespene geysir."
+        assert isinstance(target_geysir, Unit), (
+            "When building the gas structure, the target needs to be a unit (the vespene geysir) not the position of the vespene geysir."
+        )
         return self(
             self._bot_object.game_data.units[gas_structure_type_id.value].creation_ability.id,
             target=target_geysir,

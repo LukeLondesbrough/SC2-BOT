@@ -35,7 +35,7 @@ class Protocol:
         self._status: Status | None = None
 
     async def __request(self, request):
-        logger.debug(f"Sending request: {request !r}")
+        logger.debug(f"Sending request: {request!r}")
         try:
             await self._ws.send_bytes(request.SerializeToString())
         except TypeError as exc:
