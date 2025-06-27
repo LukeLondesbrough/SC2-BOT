@@ -101,7 +101,7 @@ transforming: dict[UnitTypeId, AbilityId] = {
     UnitTypeId.ZERGLING: AbilityId.BURROWUP_ZERGLING,
     UnitTypeId.ZERGLINGBURROWED: AbilityId.BURROWDOWN_ZERGLING,
 }
-# For now only contains units that cost supply, used in bot_ai.do()
+# For now only contains units that cost supply
 abilityid_to_unittypeid: dict[AbilityId, UnitTypeId] = {
     # Protoss
     AbilityId.NEXUSTRAIN_PROBE: UnitTypeId.PROBE,

@@ -69,7 +69,7 @@ class BotAIInternal(ABC):
         # Select distance calculation method, see _distances_override_functions function
         if not hasattr(self, "distance_calculation_method"):
             self.distance_calculation_method: int = 2
-        # Select if the Unit.command should return UnitCommand objects. Set this to True if your bot uses 'self.do(unit(ability, target))'
+        # Select if the Unit.command should return UnitCommand objects. Set this to True if your bot uses 'unit(ability, target)'
         if not hasattr(self, "unit_command_uses_self_do"):
             self.unit_command_uses_self_do: bool = False
         # This value will be set to True by main.py in self._prepare_start if game is played in realtime (if true, the bot will have limited time per step)
@@ -418,7 +418,7 @@ class BotAIInternal(ABC):
 
     @final
     async def _do_actions(self, actions: list[UnitCommand], prevent_double: bool = True):
-        """Used internally by main.py automatically, use self.do() instead!
+        """Used internally by main.py after each step
 
         :param actions:
         :param prevent_double:"""
@@ -654,7 +654,7 @@ class BotAIInternal(ABC):
         if self.actions:
             await self._do_actions(self.actions)
             self.actions.clear()
-        # Clear set of unit tags that were given an order this frame by self.do()
+        # Clear set of unit tags that were given an order this frame
         self.unit_tags_received_action.clear()
         # Commit debug queries
         await self.client._send_debug()
