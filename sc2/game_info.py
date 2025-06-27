@@ -10,7 +10,7 @@ from functools import cached_property
 import numpy as np
 
 from sc2.pixel_map import PixelMap
-from sc2.player import Player, Race
+from sc2.player import Player
 from sc2.position import Point2, Rect, Size
 
 
