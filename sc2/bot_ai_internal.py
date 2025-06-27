@@ -476,10 +476,16 @@ class BotAIInternal(ABC):
         self.realtime: bool = realtime
         self.base_build: int = base_build
 
-        self.race: Race = Race(self.game_info.player_races[self.player_id])
+        if self.player_id > 0:
+            self.race: Race = Race(self.game_info.player_races[self.player_id])
 
-        if len(self.game_info.player_races) == 2:
-            self.enemy_race: Race = Race(self.game_info.player_races[3 - self.player_id])
+            if len(self.game_info.player_races) == 2:
+                self.enemy_race: Race = Race(self.game_info.player_races[3 - self.player_id])
+        else:
+            # Observer
+            self.race: Race = Race.Random
+
+        self._distances_override_functions(self.distance_calculation_method)
 
         self._distances_override_functions(self.distance_calculation_method)
 
