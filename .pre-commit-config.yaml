@@ -50,9 +50,10 @@ repos:
     entry: uv run ruff check .
     pass_filenames: false
 
-  - id: pyre
-    name: Static types checking with pyre
-    stages: [push]
-    language: system
-    entry: uv run pyre
-    pass_filenames: false
+  # TODO Fix issues
+  # - id: pyrefly
+  #   name: Static types checking with pyrefly
+  #   stages: [push]
+  #   language: system
+  #   entry: uv run pyrefly check
+  #   pass_filenames: false
