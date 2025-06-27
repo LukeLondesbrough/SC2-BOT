@@ -142,11 +142,11 @@ class SC2Process:
         return None
 
     def find_base_dir(self, target_sc2_version: str) -> str | None:
-        """ Returns the base directory from the matching version string. """
+        """Returns the base directory from the matching version string."""
         version: dict
         for version in self.versions:
             if version["label"] == target_sc2_version:
-                return "Base"+str(version["base-version"])
+                return "Base" + str(version["base-version"])
         return None
 
     def _launch(self):
