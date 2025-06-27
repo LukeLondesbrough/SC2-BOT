@@ -141,11 +141,23 @@ class SC2Process:
                 return version["data-hash"]
         return None
 
+    def find_base_dir(self, target_sc2_version: str) -> str | None:
+        """ Returns the base directory from the matching version string. """
+        version: dict
+        for version in self.versions:
+            if version["label"] == target_sc2_version:
+                return "Base"+str(version["base-version"])
+        return None
+
     def _launch(self):
+        if self._sc2_version and not self._base_build:
+            self._base_build = self.find_base_dir(self._sc2_version)
+
         if self._base_build:
             executable = str(paths.latest_executeble(Paths.BASE / "Versions", self._base_build))
         else:
             executable = str(Paths.EXECUTABLE)
+
         if self._port is None:
             self._port = portpicker.pick_unused_port()
             self._used_portpicker = True
