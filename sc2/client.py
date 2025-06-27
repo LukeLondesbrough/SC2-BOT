@@ -432,7 +432,7 @@ class Client(Protocol):
             )
         )
 
-    async def obs_move_camera(self, position: Unit | Units | Point2 | Point3) -> None:
+    async def obs_move_camera(self, position: Unit | Units | Point2 | Point3, distance: float = 0) -> None:
         """Moves observer camera to the target position. Only works when observing (e.g. watching the replay).
 
         :param position:"""
@@ -444,7 +444,9 @@ class Client(Protocol):
         await self._execute(
             obs_action=sc_pb.RequestObserverAction(
                 actions=[
-                    sc_pb.ObserverAction(camera_move=sc_pb.ActionObserverCameraMove(world_pos=position.as_Point2D))
+                    sc_pb.ObserverAction(
+                        camera_move=sc_pb.ActionObserverCameraMove(world_pos=position.as_Point2D, distance=distance)
+                    )
                 ]
             )
         )
