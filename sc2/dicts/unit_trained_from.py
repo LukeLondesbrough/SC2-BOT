@@ -2,6 +2,7 @@
 # ANY CHANGE WILL BE OVERWRITTEN
 
 from sc2.ids.unit_typeid import UnitTypeId
+
 # from sc2.ids.buff_id import BuffId
 # from sc2.ids.effect_id import EffectId
 
@@ -23,7 +24,7 @@ UNIT_TRAINED_FROM: dict[UnitTypeId, set[UnitTypeId]] = {
     UnitTypeId.COLOSSUS: {UnitTypeId.ROBOTICSFACILITY},
     UnitTypeId.COMMANDCENTER: {UnitTypeId.SCV},
     UnitTypeId.CORRUPTOR: {UnitTypeId.LARVA},
-    UnitTypeId.CREEPTUMOR: {UnitTypeId.CREEPTUMOR, UnitTypeId.CREEPTUMORBURROWED, UnitTypeId.QUEEN},
+    UnitTypeId.CREEPTUMOR: {UnitTypeId.CREEPTUMORBURROWED, UnitTypeId.QUEEN},
     UnitTypeId.CREEPTUMORQUEEN: {UnitTypeId.QUEEN},
     UnitTypeId.CYBERNETICSCORE: {UnitTypeId.PROBE},
     UnitTypeId.CYCLONE: {UnitTypeId.FACTORY},

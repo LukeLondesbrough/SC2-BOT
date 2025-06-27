@@ -7,6 +7,7 @@ TODO: self.client.query_pathing (RequestQueryPathing)
 """
 
 from __future__ import annotations
+
 import sys
 
 from loguru import logger
