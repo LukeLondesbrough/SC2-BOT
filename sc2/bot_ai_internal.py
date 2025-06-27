@@ -476,9 +476,10 @@ class BotAIInternal(ABC):
         self.realtime: bool = realtime
         self.base_build: int = base_build
 
-        self.race: Race = Race(self.game_info.player_races[self.player_id])
-
-        if len(self.game_info.player_races) == 2:
+        # Get the player's race. As observer, get Race.NoRace=0
+        self.race: Race = Race(self.game_info.player_races.get(self.player_id, 0))
+        # Get the enemy's race only if we are not observer (replay) and the game has 2 players
+        if self.player_id > 0 and len(self.game_info.player_races) == 2:
             self.enemy_race: Race = Race(self.game_info.player_races[3 - self.player_id])
 
         self._distances_override_functions(self.distance_calculation_method)

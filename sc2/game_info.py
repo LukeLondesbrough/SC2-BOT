@@ -10,7 +10,7 @@ from functools import cached_property
 import numpy as np
 
 from sc2.pixel_map import PixelMap
-from sc2.player import Player, Race
+from sc2.player import Player
 from sc2.position import Point2, Rect, Size
 
 
@@ -237,7 +237,7 @@ class GameInfo:
         self.map_ramps: list[Ramp] = None  # Filled later by BotAI._prepare_first_step
         # pyre-ignore[8]
         self.vision_blockers: frozenset[Point2] = None  # Filled later by BotAI._prepare_first_step
-        self.player_races: dict[int, Race] = {
+        self.player_races: dict[int, int] = {
             p.player_id: p.race_actual or p.race_requested for p in self._proto.player_info
         }
         self.start_locations: list[Point2] = [

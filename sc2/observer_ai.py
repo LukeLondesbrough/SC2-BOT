@@ -6,20 +6,13 @@ If it works, you can watch replays with it.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 from sc2.bot_ai_internal import BotAIInternal
 from sc2.data import Alert, Result
-from sc2.game_data import GameData
 from sc2.ids.ability_id import AbilityId
 from sc2.ids.upgrade_id import UpgradeId
 from sc2.position import Point2
 from sc2.unit import Unit
 from sc2.units import Units
-
-if TYPE_CHECKING:
-    from sc2.client import Client
-    from sc2.game_info import GameInfo
 
 
 class ObserverAI(BotAIInternal):
@@ -35,21 +28,6 @@ class ObserverAI(BotAIInternal):
         """Returns time as string in min:sec format"""
         t = self.time
         return f"{int(t // 60):02}:{int(t % 60):02}"
-
-    @property
-    def game_info(self) -> GameInfo:
-        """See game_info.py"""
-        return self._game_info
-
-    @property
-    def game_data(self) -> GameData:
-        """See game_data.py"""
-        return self._game_data
-
-    @property
-    def client(self) -> Client:
-        """See client.py"""
-        return self._client
 
     def alert(self, alert_code: Alert) -> bool:
         """
