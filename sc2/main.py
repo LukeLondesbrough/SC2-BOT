@@ -415,8 +415,9 @@ async def _join_game(
     portconfig,
     save_replay_as=None,
     game_time_limit=None,
+    sc2_version=None,
 ):
-    async with SC2Process(fullscreen=players[1].fullscreen) as server:
+    async with SC2Process(fullscreen=players[1].fullscreen, sc2_version=sc2_version) as server:
         await server.ping()
 
         client = Client(server._ws)
@@ -466,7 +467,7 @@ def run_game(map_settings, players, **kwargs) -> Result | list[Result | None]:
     Returns a list of two Result enums if the game was "Human vs Bot" or "Bot vs Bot".
     """
     if sum(isinstance(p, (Human, Bot)) for p in players) > 1:
-        host_only_args = ["save_replay_as", "rgb_render_config", "random_seed", "sc2_version", "disable_fog"]
+        host_only_args = ["save_replay_as", "rgb_render_config", "random_seed", "disable_fog"]
         join_kwargs = {k: v for k, v in kwargs.items() if k not in host_only_args}
 
         portconfig = Portconfig()
