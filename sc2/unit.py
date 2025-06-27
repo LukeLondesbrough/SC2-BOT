@@ -154,7 +154,7 @@ class Unit:
         """Returns the race of the unit"""
         return Race(self._type_data._proto.race)
 
-    @property
+    @cached_property
     def tag(self) -> int:
         """Returns the unique tag of the unit."""
         return self._proto.tag
