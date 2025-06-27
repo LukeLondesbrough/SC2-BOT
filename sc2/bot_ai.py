@@ -1154,6 +1154,8 @@ class BotAI(BotAIInternal):
                 structure.type_id in research_structure_types
                 # If structure hasn't received an action/order this frame
                 and structure.tag not in self.unit_tags_received_action
+                # Structure is ready / completed
+                and structure.is_ready
                 # Structure is idle
                 and structure.is_idle
                 # Structure belongs to protoss and is powered (near pylon)
