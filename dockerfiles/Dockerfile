@@ -70,7 +70,7 @@ RUN curl -L https://sc2ai.net/wiki/184/plugin/attachments/download/9/ -o 1.zip \
     && rm *.zip
 
 # Get official blizzard maps
-RUN curl http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season3.zip -o Ladder2019Season3.zip \
+RUN curl --retry 3 --retry-delay 5 -C - http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season3.zip -o Ladder2019Season3.zip \
     && unzip -q -P iagreetotheeula -o 'Ladder2019Season3.zip' \
     && mv Ladder2019Season3/* . \
     && rm Ladder2019Season3.zip \
@@ -82,7 +82,7 @@ RUN curl -L https://github.com/shostyn/sc2patch/raw/4987d4915b47c801adbc05e297ab
     && rm 506.zip
 
 # Get flat and empty maps
-RUN curl http://blzdistsc2-a.akamaihd.net/MapPacks/Melee.zip -o Melee.zip \
+RUN curl --retry 3 --retry-delay 5 -C - http://blzdistsc2-a.akamaihd.net/MapPacks/Melee.zip -o Melee.zip \
     && unzip -q -P iagreetotheeula -o 'Melee.zip' \
     && mv Melee/* . \
     && rm Melee.zip \
