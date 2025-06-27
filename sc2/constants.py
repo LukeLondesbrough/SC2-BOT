@@ -408,6 +408,7 @@ PROTOSS_TECH_REQUIREMENT: dict[UnitTypeId, UnitTypeId] = defaultdict(
         UnitTypeId.ROBOTICSBAY: UnitTypeId.ROBOTICSFACILITY,
         UnitTypeId.COLOSSUS: UnitTypeId.ROBOTICSBAY,
         UnitTypeId.DISRUPTOR: UnitTypeId.ROBOTICSBAY,
+        UnitTypeId.FLEETBEACON: UnitTypeId.STARGATE,
     },
 )
 ZERG_TECH_REQUIREMENT: dict[UnitTypeId, UnitTypeId] = defaultdict(
