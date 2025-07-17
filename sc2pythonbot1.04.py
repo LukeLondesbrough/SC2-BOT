@@ -32,6 +32,7 @@ class BtechHeroMarine(BotAI):
                              await self.build(UnitTypeId.SUPPLYDEPOT, self.main_base_ramp.depot_in_middle)
                   elif self.already_pending(UnitTypeId.SUPPLYDEPOT) == 0 and self.supply_left <4:
                        if self.can_afford(UnitTypeId.SUPPLYDEPOT):
+                            target_depot = self.structures(UnitTypeId.SUPPLYDEPOT).closest_to(ccs)
                             pos = ccs.position.towards(self.enemy_start_locations[0], random.randrange(8, 15))
                             await self.build(UnitTypeId.SUPPLYDEPOT, near=pos)
                         
@@ -48,13 +49,17 @@ class BtechHeroMarine(BotAI):
                  mineralfield = self.mineral_field.closest_to(cc)
                  scv.gather(mineralfield)
 
+          
+            if self.structures(UnitTypeId.BARRACKS) and self.can_afford(UnitTypeId.REFINERY) and self.structures(UnitTypeId.REFINERY).amount < 2 and self.already_pending(UnitTypeId.REFINERY) <= 1:      
+               cc = self.townhalls.closest_to(self.start_location)
+               await self.build(UnitTypeId.REFINERY, near=cc)
 
             if self.structures(UnitTypeId.BARRACKS).ready.exists:
                 for rax in self.structures(UnitTypeId.BARRACKS).ready.idle:
                     if self.can_afford(UnitTypeId.MARINE):
                         rax.train(UnitTypeId.MARINE)
                   
-
+          
             if self.units(UnitTypeId.MARINE).exists and self.townhalls.amount > 2:
                ccs = self.townhalls.sorted(lambda cc: cc.tag, reverse=True)
                
@@ -77,7 +82,6 @@ class BtechHeroMarine(BotAI):
 
                  for marine in marines:
                        self.do(marine.attack(p1))
-
 
 class Humanish(BotAI):
      async def on_step(self, iteration:int):
