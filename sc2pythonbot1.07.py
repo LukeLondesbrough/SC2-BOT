@@ -17,11 +17,18 @@ import random
 from sc2.player import Bot, Human
 from sc2.data import Result
 from sc2.ids.ability_id import AbilityId
+from sc2.position import Point2
 
 class BtechHeroMarine(BotAI):
     async def on_step(self, iteration: int):
         print(f"The Iteration is {iteration}")
-
+        
+        def random_point_towards_enemy(start, enemy, distance =10, spread =5):
+            direction = (enemy - start).normalized
+            offset = direction * distance
+            rand_offset = Point2((random.uniform(-spread, spread), random.uniform(-spread, spread)))
+            return start + offset +rand_offset
+        
         if self.townhalls:
             cc = self.townhalls.closest_to(self.start_location)
             ccs = self.townhalls.random
@@ -56,15 +63,23 @@ class BtechHeroMarine(BotAI):
             if self.can_afford(UnitTypeId.COMMANDCENTER) and self.structures(UnitTypeId.COMMANDCENTER).amount < 3:
                 await self.expand_now()
 
-        # If a building is half built, a scv will come and build it ########NOT WORKING
+        # If a building is half built, a scv will come and build it 
         inconstructs = self.structures.filter(lambda s: not s.is_ready)
         for construct in inconstructs:
             if self.workers.exists and self.workers.closer_than(3, construct).amount == 0:
                 closestworker = self.workers.closest_to(construct)
                 if closestworker:
                     self.do(closestworker.smart(construct))
-        
-    
+
+        # #repair damaged buildings ######## NOT WORKING
+        # damaged = self.structures.filter(lambda s: not s.is_ready and s.health_percentage < 1 )
+        # for building in damaged:
+        #     if self.workers.exists:
+        #         closestworkerrepair = self.workers.closest_to(building)
+        #         if closestworkerrepair:
+        #             self.do(closestworker.repair(building))
+
+
         # Send idle SCVs to mine
         for scv in self.workers.idle:
             cc = self.townhalls.closest_to(scv)
@@ -102,8 +117,8 @@ class BtechHeroMarine(BotAI):
                 for marine in marines:
                     ccs = self.townhalls.sorted(lambda cc: cc.tag, reverse=True)
                     
-                    p1 = ccs[0].position
-                    p2 =ccs[1].position
+                    p1 = random_point_towards_enemy(ccs[0].position, self.enemy_start_locations[0])
+                    p2 = random_point_towards_enemy(ccs[1].position, self.enemy_start_locations[0])
 
                     patrol = p1 if (iteration // 100) % 2 == 0 else p2
 
